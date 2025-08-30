@@ -3,14 +3,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPIcore.Data;
 using WebAPIcore.Models;
-//using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc.Formatters.Xml;
 
-namespace WebAPIcore.Controllers
+namespace WebAPIcore.Controllers.Header
 {
-    //[ApiVersion("1.0")]
-    //[Route("api/v{version:apiVersion}/[controller]")]
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
+    //[ApiController]
     [ApiController]
+    [Route("api/[controller]")]
+    [ApiVersion("5.0")]
+    [Produces("application/json", "application/xml")]
     public class ContactsController : ControllerBase
     {
         private readonly ClontactsAPIDbContext dbcontext;

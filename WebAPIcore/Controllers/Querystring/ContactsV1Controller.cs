@@ -3,19 +3,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPIcore.Data;
 using WebAPIcore.Models;
-//using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc.Versioning;
 
-namespace WebAPIcore.Controllers
+namespace WebAPIcore.Controllers.Querystring
 {
-    //[ApiVersion("1.0")]
-    //[Route("api/v{version:apiVersion}/[controller]")]
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
+    //[ApiController]
     [ApiController]
-    public class ContactsController : ControllerBase
+    [ApiVersion("3.0")]
+    [Route("api/contact")]
+   //  [Route("api/[controller]")]
+    public class ContactsV1Controller : ControllerBase
     {
         private readonly ClontactsAPIDbContext dbcontext;
 
-        public ContactsController(ClontactsAPIDbContext dbcontext)
+        public ContactsV1Controller(ClontactsAPIDbContext dbcontext)
         {
             this.dbcontext = dbcontext;
         }

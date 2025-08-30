@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 using WebAPIcore.Models;
@@ -31,6 +32,8 @@ namespace WebAPIcore.Controllers
             }
 
             return NotFound("user not found");
+            //  return BadRequest();
+            
         }
 
         // To generate token

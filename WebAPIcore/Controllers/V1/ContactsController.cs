@@ -3,13 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPIcore.Data;
 using WebAPIcore.Models;
-//using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc.Versioning;
 
-namespace WebAPIcore.Controllers
+namespace WebAPIcore.Controllers.V1
 {
-    //[ApiVersion("1.0")]
-    //[Route("api/v{version:apiVersion}/[controller]")]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    //[Route("api/[controller]")]
     [ApiController]
     public class ContactsController : ControllerBase
     {
@@ -22,7 +22,7 @@ namespace WebAPIcore.Controllers
         [HttpGet]
         public async Task<IActionResult> GetContacts()
         {
-            return Ok(await dbcontext.Contacts.ToListAsync());
+            return Ok(await dbcontext.Contacts.FirstOrDefaultAsync());
         }
         [HttpPost]
         public async Task<IActionResult> AddContacts(Contact addContact)

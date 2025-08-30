@@ -3,26 +3,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPIcore.Data;
 using WebAPIcore.Models;
-//using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc.Versioning;
 
-namespace WebAPIcore.Controllers
+namespace WebAPIcore.Controllers.Querystring
 {
-    //[ApiVersion("1.0")]
-    //[Route("api/v{version:apiVersion}/[controller]")]
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
+    //[ApiController]
     [ApiController]
-    public class ContactsController : ControllerBase
+    [ApiVersion("4.0")]
+   [Route("api/contact")]
+    public class ContactsV2Controller : ControllerBase
     {
         private readonly ClontactsAPIDbContext dbcontext;
 
-        public ContactsController(ClontactsAPIDbContext dbcontext)
+        public ContactsV2Controller(ClontactsAPIDbContext dbcontext)
         {
             this.dbcontext = dbcontext;
         }
         [HttpGet]
         public async Task<IActionResult> GetContacts()
         {
-            return Ok(await dbcontext.Contacts.ToListAsync());
+            return Ok(await dbcontext.Contacts.FirstOrDefaultAsync());
         }
         [HttpPost]
         public async Task<IActionResult> AddContacts(Contact addContact)
